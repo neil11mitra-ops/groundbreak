@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groundbreak Co. | Excavation & Earthworks – Western Melbourne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #0c0b09;
+  --sur1:    #161410;
+  --sur2:    #201d18;
+  --border:  #2c2820;
+  --accent:  #f0a500;
+  --accent2: #c47f00;
+  --text:    #f5f0e8;
+  --sub:     #a89f92;
+  --dim:     #5a5650;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 2.5rem;
+  background: rgba(12,11,9,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-decoration: none;
+}
+.logo em { color: var(--accent); font-style: normal; }
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--sub);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--accent) !important;
+  color: #0c0b09 !important;
+  padding: 0.55rem 1.3rem;
+  font-weight: 700 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--accent2) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 9rem 2.5rem 5rem;
+  overflow: hidden;
+}
+
+/* Photo placeholder as hero background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(12,11,9,0.97) 0%, rgba(12,11,9,0.65) 50%, rgba(12,11,9,0.4) 100%),
+    linear-gradient(135deg, #2a2010 0%, #1a1508 50%, #0c0b09 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  opacity: 0.12;
+}
+.hero-photo-placeholder span {
+  font-size: 5rem;
+}
+.hero-photo-placeholder p {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.hero-content { position: relative; z-index: 2; }
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(240,165,0,0.15);
+  border: 1px solid rgba(240,165,0,0.35);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.1s forwards;
+}
+.hero-pill::before { content: '📍'; font-size: 0.9rem; }
+
+.hero h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3.8rem, 11vw, 10rem);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.25s forwards;
+}
+.hero h1 .gold { color: var(--accent); }
+
+.hero-desc {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: var(--sub);
+  max-width: 520px;
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.4s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.55s forwards;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: #0c0b09;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+
+.btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  border: 2px solid var(--border);
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.btn-secondary:hover { border-color: var(--text); transform: translateY(-2px); }
+
+/* ── TICKER ── */
+.ticker {
+  background: var(--accent);
+  overflow: hidden;
+  padding: 0.8rem 0;
+  white-space: nowrap;
+}
+.ticker-track {
+  display: inline-flex;
+  animation: tick 28s linear infinite;
+}
+.ticker-item {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: #0c0b09;
+  padding: 0 2rem;
+}
+.ticker-sep { color: rgba(12,11,9,0.3); }
+
+/* ── TRUST BAR ── */
+.trust {
+  background: var(--sur1);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 2.5rem;
+}
+.trust-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+.trust-item { padding: 1rem; }
+.trust-num {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.8rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.trust-label {
+  font-size: 0.88rem;
+  color: var(--sub);
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+/* ── SERVICES ── */
+.section {
+  padding: 6rem 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(240,165,0,0.12);
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1.2rem;
+}
+
+.section h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 1.15rem;
+  color: var(--sub);
+  max-width: 540px;
+  margin-bottom: 3.5rem;
+  line-height: 1.65;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.svc-card {
+  background: var(--sur1);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  transition: border-color 0.25s, background 0.25s;
+  position: relative;
+}
+.svc-card:hover {
+  border-color: var(--accent);
+  background: var(--sur2);
+}
+
+.svc-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.svc-card h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.svc-card p {
+  font-size: 1rem;
+  color: var(--sub);
+  line-height: 1.65;
+}
+
+.svc-tag {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+.svc-tag.ext { border-color: var(--dim); color: var(--sub); }
+
+/* ── BEFORE & AFTER ── */
+.ba-wrap {
+  background: var(--sur1);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 6rem 2.5rem;
+}
+.ba-inner { max-width: 1200px; margin: 0 auto; }
+
+.ba-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.ba-card { display: flex; flex-direction: column; gap: 0.75rem; }
+.ba-card h4 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
+
+.ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+.photo-placeholder {
+  aspect-ratio: 4/3;
+  background: var(--sur2);
+  border: 2px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  position: relative;
+}
+.photo-placeholder span { font-size: 2rem; }
+.photo-placeholder p {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.photo-placeholder .badge {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: var(--accent);
+  color: #0c0b09;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+}
+.photo-placeholder .badge.after {
+  background: var(--text);
+  color: #0c0b09;
+}
+
+/* Wide single placeholders */
+.photo-wide {
+  aspect-ratio: 16/7;
+  background: var(--sur2);
+  border: 2px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.photo-wide span { font-size: 3rem; }
+.photo-wide p {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ── HOW IT WORKS ── */
+.how-wrap {
+  background: var(--bg);
+  padding: 6rem 2.5rem;
+}
+.how-inner { max-width: 1100px; margin: 0 auto; }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 3.5rem;
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  padding-top: 1.5rem;
+  border-top: 3px solid var(--border);
+  transition: border-color 0.25s;
+}
+.step:hover { border-color: var(--accent); }
+
+.step-num {
+  font-family: 'Anton', sans-serif;
+  font-size: 3.5rem;
+  color: var(--sur2);
+  line-height: 1;
+  margin-bottom: 0.8rem;
+}
+
+.step h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.step p { font-size: 1rem; color: var(--sub); line-height: 1.6; }
+
+/* ── WHY US ── */
+.why-wrap {
+  background: var(--sur1);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 6rem 2.5rem;
+}
+.why-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.why-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 2.5rem;
+}
+.why-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1.05rem;
+  color: var(--sub);
+  line-height: 1.6;
+}
+.why-list li .check {
+  width: 1.6rem;
+  height: 1.6rem;
+  background: rgba(240,165,0,0.15);
+  border: 1px solid rgba(240,165,0,0.4);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.why-photo { display: flex; flex-direction: column; gap: 1rem; }
+.why-photo .photo-wide { aspect-ratio: 16/9; }
+
+/* ── TESTIMONIALS ── */
+.testi-wrap {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 6rem 0 6rem 2.5rem;
+  overflow: hidden;
+}
+.testi-header {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding-right: 2.5rem;
+}
+.testi-header h2 { font-family: 'Anton', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); line-height: 0.95; letter-spacing: 0.02em; }
+
+.testi-scroll {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 2.5rem;
+  padding-bottom: 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.testi-scroll::-webkit-scrollbar { height: 3px; }
+.testi-scroll::-webkit-scrollbar-thumb { background: var(--border); }
+
+.tcard {
+  flex: 0 0 340px;
+  scroll-snap-align: start;
+  background: var(--sur1);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  transition: border-color 0.25s;
+}
+.tcard:hover { border-color: var(--accent); }
+
+.tcard-stars { color: var(--accent); font-size: 1rem; margin-bottom: 0.8rem; }
+
+.tcard-text {
+  font-size: 1.02rem;
+  color: var(--sub);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.tcard-author { display: flex; align-items: center; gap: 0.8rem; }
+.tcard-av {
+  width: 2.5rem; height: 2.5rem;
+  background: var(--sur2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.tcard-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.tcard-meta { font-size: 0.82rem; color: var(--dim); margin-top: 0.1rem; }
+
+/* ── AREAS ── */
+.areas-wrap {
+  background: var(--sur1);
+  border-bottom: 1px solid var(--border);
+  padding: 6rem 2.5rem;
+}
+.areas-inner { max-width: 1200px; margin: 0 auto; }
+
+.suburb-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+.sub-tag {
+  background: var(--sur2);
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--sub);
+  padding: 0.6rem 1.1rem;
+  transition: border-color 0.2s, color 0.2s;
+  cursor: default;
+}
+.sub-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+.area-note {
+  margin-top: 1.8rem;
+  font-size: 1rem;
+  color: var(--dim);
+}
+
+/* ── CONTACT ── */
+.contact-outer {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+  padding: 6rem 2.5rem;
+  align-items: start;
+}
+
+.contact-left h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.2rem;
+}
+
+.contact-desc {
+  font-size: 1.1rem;
+  color: var(--sub);
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+}
+
+.phones { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2rem; }
+.phone-block {}
+.phone-role {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.2rem;
+}
+.phone-link {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+  display: block;
+  line-height: 1.1;
+  transition: color 0.2s;
+}
+.phone-link:hover { color: var(--accent2); }
+
+.contact-details { display: flex; flex-direction: column; gap: 0.5rem; }
+.contact-details p { font-size: 1rem; color: var(--sub); }
+
+/* FORM */
+.form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.fg { display: flex; flex-direction: column; gap: 0.4rem; }
+.fg label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.fg input,
+.fg select,
+.fg textarea {
+  background: var(--sur1);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  padding: 0.9rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.fg input::placeholder,
+.fg textarea::placeholder { color: var(--dim); }
+.fg input:focus,
+.fg select:focus,
+.fg textarea:focus { border-color: var(--accent); }
+.fg textarea { resize: vertical; min-height: 120px; }
+.fg select option { background: var(--sur1); }
+
+.form-submit {
+  background: var(--accent);
+  color: #0c0b09;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 1.1rem;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s, transform 0.15s;
+}
+.form-submit:hover { background: var(--accent2); transform: translateY(-1px); }
+
+.form-note { font-size: 0.85rem; color: var(--dim); text-align: center; }
+
+.form-success {
+  display: none;
+  background: var(--sur1);
+  border: 1px solid var(--accent);
+  padding: 3rem;
+  text-align: center;
+}
+.form-success h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.form-success p { font-size: 1.05rem; color: var(--sub); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--sur1);
+  border-top: 1px solid var(--border);
+  padding: 2.2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-logo {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.footer-logo em { color: var(--accent); font-style: normal; }
+footer p { font-size: 0.85rem; color: var(--dim); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes tick {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { display: none; }
+  .hero { padding: 7rem 1.25rem 4.5rem; }
+  .section, .how-wrap, .ba-inner, .areas-inner, .why-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .trust { padding: 2rem 1.25rem; }
+  .trust-inner { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .ba-wrap, .how-wrap, .why-wrap, .areas-wrap { padding: 4rem 1.25rem; }
+  .ba-inner, .areas-inner { max-width: 100%; }
+  .why-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.25rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .testi-wrap { padding: 4rem 0 4rem 1.25rem; }
+  .testi-header { padding-right: 1.25rem; }
+  .testi-scroll { padding-right: 1.25rem; }
+  .tcard { flex: 0 0 290px; }
+  footer { padding: 1.5rem 1.25rem; }
+  .steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .steps { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Groundbreak<em>.</em></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#areas">Areas</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Free Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-photo-placeholder">
+      <span>🚜</span>
+      <p>Hero Photo — Bobcat on site</p>
+    </div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-pill">Western Melbourne's Excavation Crew</div>
+    <h1>We Dig.<br>We Clean.<br>We <span class="gold">Deliver.</span></h1>
+    <p class="hero-desc">Excavation, bobcat work, rubbish removal, skip bins, and driveway concreting. We show up on time, do the job properly, and leave the site clean.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">📞 Get a Free Quote</a>
+      <a href="#services" class="btn-secondary">See What We Do →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Excavation <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Bobcat Work <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Site Clearing <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Rubbish Removal <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Skip Bins <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Driveway Prep <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Concreting <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Soil Fills <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Landscaping Prep <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Excavation <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Bobcat Work <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Site Clearing <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Rubbish Removal <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Skip Bins <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Driveway Prep <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Concreting <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Soil Fills <span class="ticker-sep">◆</span></span>
+    <span class="ticker-item">Landscaping Prep <span class="ticker-sep">◆</span></span>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-inner reveal">
+    <div class="trust-item">
+      <div class="trust-num">100%</div>
+      <div class="trust-label">Owner-Operated</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">$0</div>
+      <div class="trust-label">Cost to Get a Quote</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">8+</div>
+      <div class="trust-label">Services Offered</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">⭐ 5</div>
+      <div class="trust-label">Star Rated by Clients</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div id="services" style="background: var(--bg); border-bottom: 1px solid var(--border);">
+  <div class="section">
+    <div class="section-tag reveal">What We Do</div>
+    <h2 class="reveal">We Handle the Dirty Work.<br>So You Don't Have To.</h2>
+    <p class="section-sub reveal">From digging a hole to cleaning up a full site — we've got the machine, the crew, and the know-how. No sub-contractors. Just us.</p>
+    <div class="services-grid reveal">
+
+      <div class="svc-card">
+        <span class="svc-emoji">⛏️</span>
+        <h3>Digging & Excavation</h3>
+        <p>Need a hole dug? We dig it. Footings, trenches, bulk earthworks — any size, done right the first time.</p>
+        <span class="svc-tag">Core Service</span>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-emoji">🚧</span>
+        <h3>Driveway Prep</h3>
+        <p>We excavate and level the ground before your driveway goes in. Your concretor arrives to a ready-to-go site.</p>
+        <span class="svc-tag">Core Service</span>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-emoji">🌿</span>
+        <h3>Landscaping Prep</h3>
+        <p>We strip, level, and clear the land so your landscaper can start straight away without any headaches.</p>
+        <span class="svc-tag">Core Service</span>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-emoji">🚜</span>
+        <h3>Bobcat Work</h3>
+        <p>Our operator, our machine. We run the bobcat ourselves for earthmoving, cleanup, and shifting material around site.</p>
+        <span class="svc-tag">Core Service</span>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-emoji">🗑️</span>
+        <h3>Rubbish Removal</h3>
+        <p>We load it up and haul it away. Soil, green waste, construction rubbish — gone. Site left clean.</p>
+        <span class="svc-tag">Core Service</span>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-emoji">📦</span>
+        <h3>Skip Bins</h3>
+        <p>We drop a bin, you fill it, we pick it up. Easy as that. Multiple sizes available for any job.</p>
+        <span class="svc-tag">Core Service</span>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-emoji">🪨</span>
+        <h3>Driveway Concreting</h3>
+        <p>We dig it out AND pour the concrete. One crew, one call, one invoice. No need to chase two contractors.</p>
+        <span class="svc-tag ext">Extended Service</span>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-emoji">🏡</span>
+        <h3>Soil Fills & Landscaping</h3>
+        <p>Need soil or fill delivered and spread? We bring it, grade it, and leave it level and ready to go.</p>
+        <span class="svc-tag ext">Extended Service</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BEFORE & AFTER -->
+<div class="ba-wrap" id="gallery">
+  <div class="ba-inner">
+    <div class="section-tag reveal">Our Work</div>
+    <h2 style="font-family: Anton, sans-serif; font-size: clamp(2.8rem,6vw,5rem); line-height:0.95; letter-spacing:0.02em; color:var(--text); margin-bottom:1rem;" class="reveal">See the Difference<br>We Make.</h2>
+    <p style="font-size:1.15rem; color:var(--sub); margin-bottom:0; line-height:1.65; max-width:540px;" class="reveal">Before and after — every job. We let the results speak for themselves.</p>
+
+    <!-- BEFORE & AFTER -->
+    <div class="ba-card reveal" style="margin-top: 2.5rem;">
+      <h4>🌿 Site Clear & Scrape — West Melbourne</h4>
+      <div class="ba-pair">
+        <div style="position:relative; overflow:hidden;">
+          <img src="images/before-site-clear.jpg" alt="Before — overgrown site" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+          <span class="badge" style="position:absolute; top:0.5rem; left:0.5rem;">Before</span>
+        </div>
+        <div style="position:relative; overflow:hidden;">
+          <img src="images/after-site-clear.jpg" alt="After — cleared and scraped" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+          <span class="badge after" style="position:absolute; top:0.5rem; left:0.5rem;">After</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADDITIONAL AFTERS -->
+    <div class="ba-grid reveal" style="margin-top: 1.5rem;">
+
+      <div class="ba-card">
+        <h4>🧱 Side Access Prep — West Melbourne</h4>
+        <div style="position:relative; overflow:hidden;">
+          <img src="images/after-side-access.jpg" alt="After — side access cleared" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+          <span class="badge after" style="position:absolute; top:0.5rem; left:0.5rem;">After</span>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <h4>🚧 Driveway Prep — West Melbourne</h4>
+        <div style="position:relative; overflow:hidden;">
+          <img src="images/after-driveway-prep.jpg" alt="After — driveway excavation complete" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+          <span class="badge after" style="position:absolute; top:0.5rem; left:0.5rem;">After</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-wrap" id="how">
+  <div class="how-inner">
+    <div class="section-tag reveal">Simple Process</div>
+    <h2 style="font-family: Anton, sans-serif; font-size: clamp(2.8rem,6vw,5rem); line-height:0.95; letter-spacing:0.02em; color:var(--text);" class="reveal">Getting Started<br>Is Dead Simple.</h2>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Call or Message Us</h3>
+        <p>Tell us what you need, where the job is, and when. Takes 2 minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>We Give You a Quote</h3>
+        <p>Free, fast, and straight to the point. No hidden costs, no rubbish.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>We Show Up & Do It</h3>
+        <p>On the day we agreed. Our crew, our gear, no sub-contractors.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Site Left Clean</h3>
+        <p>We pack up and leave the site tidy. Job done. You're happy. Done.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="why-wrap" id="why">
+  <div class="why-inner" style="max-width:1200px; margin:0 auto;">
+    <div>
+      <div class="section-tag reveal">Why Choose Us</div>
+      <h2 style="font-family: Anton, sans-serif; font-size: clamp(2.8rem,6vw,5rem); line-height:0.95; letter-spacing:0.02em; color:var(--text);" class="reveal">We Do What<br>We Say We'll Do.</h2>
+      <ul class="why-list reveal">
+        <li><span class="check">✓</span> We show up on the day we said — no last-minute cancellations</li>
+        <li><span class="check">✓</span> Our operator runs our machine — no strangers on your site</li>
+        <li><span class="check">✓</span> The price we quote is the price you pay — no surprise charges</li>
+        <li><span class="check">✓</span> Fully insured — your property is protected</li>
+        <li><span class="check">✓</span> We clean up after ourselves — site left tidy every time</li>
+        <li><span class="check">✓</span> One crew does everything — no juggling multiple tradies</li>
+        <li><span class="check">✓</span> Fast response — we actually answer the phone</li>
+      </ul>
+    </div>
+    <div class="why-photo reveal">
+      <img src="images/after-driveway-prep.jpg" alt="Driveway prep complete" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;">
+      <img src="images/after-site-clear.jpg" alt="Site cleared and scraped" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;">
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testi-wrap" id="testimonials">
+  <div class="testi-header">
+    <div class="section-tag reveal">Happy Clients</div>
+    <h2 class="reveal">Don't Take<br>Our Word for It.</h2>
+  </div>
+  <div class="testi-scroll reveal">
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"Showed up on time, got the driveway dig done in a day, and left the site spotless. Exactly what you want — no excuses, no dramas."</p>
+      <div class="tcard-author">
+        <div class="tcard-av">MB</div>
+        <div>
+          <div class="tcard-name">Mark B.</div>
+          <div class="tcard-meta">Tarneit · Driveway Prep</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"Used them for a full backyard level and soil fill. Fair price, competitive quote, and the operator clearly knew what he was doing. Won't go anywhere else."</p>
+      <div class="tcard-author">
+        <div class="tcard-av">SL</div>
+        <div>
+          <div class="tcard-name">Sarah L.</div>
+          <div class="tcard-meta">Melton · Soil Fill & Levelling</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"Got three quotes. Groundbreak weren't the cheapest but they were by far the most professional. Hired them. Zero regrets."</p>
+      <div class="tcard-author">
+        <div class="tcard-av">DP</div>
+        <div>
+          <div class="tcard-name">Dean P.</div>
+          <div class="tcard-meta">Point Cook · Site Clean</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"They did the excavation AND the concrete. One phone call, one crew, one invoice. The driveway looks great and it was done ahead of schedule."</p>
+      <div class="tcard-author">
+        <div class="tcard-av">JT</div>
+        <div>
+          <div class="tcard-name">Jenny T.</div>
+          <div class="tcard-meta">Hoppers Crossing · Full Driveway</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"Needed a skip bin for a big backyard cleanout. Dropped off same day, picked up when I called. Simple, fair price, no fuss."</p>
+      <div class="tcard-author">
+        <div class="tcard-av">RC</div>
+        <div>
+          <div class="tcard-name">Ryan C.</div>
+          <div class="tcard-meta">Altona · Skip Bin</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"Serious earthworks on a tricky block. They flagged a couple of issues early before they became problems. Communication was brilliant the whole way through."</p>
+      <div class="tcard-author">
+        <div class="tcard-av">AM</div>
+        <div>
+          <div class="tcard-name">Aaron M.</div>
+          <div class="tcard-meta">Wyndham Vale · Earthworks</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- AREAS -->
+<div class="areas-wrap" id="areas">
+  <div class="areas-inner">
+    <div class="section-tag reveal">Service Area</div>
+    <h2 style="font-family: Anton, sans-serif; font-size: clamp(2.8rem,6vw,5rem); line-height:0.95; letter-spacing:0.02em; color:var(--text);" class="reveal">We Come<br>to You.</h2>
+    <p style="font-size:1.1rem; color:var(--sub); margin-top:1rem; line-height:1.65; max-width:500px;" class="reveal">Based in Melbourne's west — we cover the whole region. Find your suburb below.</p>
+    <div class="suburb-cloud reveal">
+      <span class="sub-tag">Tarneit</span>
+      <span class="sub-tag">Melton</span>
+      <span class="sub-tag">Altona</span>
+      <span class="sub-tag">Werribee</span>
+      <span class="sub-tag">Hoppers Crossing</span>
+      <span class="sub-tag">Wyndham Vale</span>
+      <span class="sub-tag">Point Cook</span>
+      <span class="sub-tag">Laverton</span>
+      <span class="sub-tag">Sunshine</span>
+      <span class="sub-tag">Deer Park</span>
+      <span class="sub-tag">Williamstown</span>
+    </div>
+    <p class="area-note reveal">Not on the list? Give us a call — we're happy to travel for the right job.</p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-outer" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="section-tag reveal">Get in Touch</div>
+      <h2 class="reveal">Ready to Get<br>Started?</h2>
+      <p class="contact-desc reveal">Call us, or fill in the form and we'll call you back. Free quote, no pressure, no obligation.</p>
+      <div class="phones reveal">
+        <div class="phone-block">
+          <p class="phone-role">Primary</p>
+          <a href="tel:+61402656078" class="phone-link">0402 656 078</a>
+        </div>
+        <div class="phone-block">
+          <p class="phone-role">Secondary</p>
+          <a href="tel:+61422241921" class="phone-link" style="font-size:2rem;">0422 241 921</a>
+        </div>
+      </div>
+      <div class="contact-details reveal">
+        <p>📍 Servicing Western Melbourne</p>
+        <p>🕐 Monday – Saturday, 7am to 5pm</p>
+        <p>⚡ We usually respond same day</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="form reveal" id="contactForm">
+        <div class="form-row">
+          <div class="fg">
+            <label>First Name</label>
+            <input type="text" placeholder="James">
+          </div>
+          <div class="fg">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="fg">
+          <label>Your Phone Number</label>
+          <input type="tel" placeholder="04XX XXX XXX">
+        </div>
+        <div class="fg">
+          <label>Your Email</label>
+          <input type="email" placeholder="you@email.com">
+        </div>
+        <div class="fg">
+          <label>What Do You Need?</label>
+          <select>
+            <option value="" disabled selected>Pick a service...</option>
+            <option>Digging & Excavation</option>
+            <option>Driveway Prep</option>
+            <option>Landscaping Prep</option>
+            <option>Bobcat Work</option>
+            <option>Rubbish Removal</option>
+            <option>Skip Bins</option>
+            <option>Driveway Concreting</option>
+            <option>Soil Fills & Landscaping</option>
+            <option>Not Sure – Need Advice</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Your Suburb</label>
+          <input type="text" placeholder="e.g. Tarneit">
+        </div>
+        <div class="fg">
+          <label>Tell Us About the Job</label>
+          <textarea placeholder="What needs to be done? The more detail, the better..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send My Enquiry →</button>
+        <p class="form-note">We'll get back to you within a few hours on business days.</p>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <h3>Done! ✓</h3>
+        <p>Thanks for reaching out. We'll be in touch shortly with your free quote.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Groundbreak<em>.</em></div>
+  <p>© 2025 Groundbreak Co. · Western Melbourne · ABN: 00 000 000 000</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  function submitForm() {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
